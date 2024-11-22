@@ -8,7 +8,17 @@ import { Trainer } from '../Trainer';
 })
 export class TrainerDetailComponent implements OnInit {
   @Input() trainerDetail!: Trainer;
-  constructor() {}
+  promedio:number=0;
 
-  ngOnInit() {}
+  constructor() {
+  }
+
+  calcularPromedio() {
+    this.promedio=0;
+    const totalPoder = this.trainerDetail.pokemons.reduce((acc, pokemon) => acc + pokemon.level, 0);
+    this.promedio = totalPoder / this.trainerDetail.pokemons.length;
+  }
+  ngOnInit() {
+    this.calcularPromedio()
+  }
 }
